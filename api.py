@@ -6,7 +6,11 @@ from PIL import Image
 import base64
 import sqlite3
 from flask_cors import CORS
+from pathlib import Path
 
+
+Path("images/previews").mkdir(parents=True, exist_ok=True)
+Path("images/uploads").mkdir(parents=True, exist_ok=True)
 
 app = Flask(__name__)
 CORS(app)
