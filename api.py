@@ -1,13 +1,13 @@
-from flask import Flask, request
-from flask_restful import Resource, Api
-import uuid
-import os
-from PIL import Image
 import base64
+import os
 import sqlite3
-from flask_cors import CORS
+import uuid
 from pathlib import Path
 
+from flask import Flask, request
+from flask_cors import CORS
+from flask_restful import Api, Resource
+from PIL import Image
 
 Path("images/previews").mkdir(parents=True, exist_ok=True)
 Path("images/uploads").mkdir(parents=True, exist_ok=True)
@@ -18,7 +18,7 @@ api = Api(app)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return {'hello': True}
+    return {'Activate': True}
 
 @app.route('/order', methods=['POST'])
 def order():
@@ -79,7 +79,7 @@ def original_file():
     file = request.form.get('file')
     imgfile = open('/previews/' + file, 'rb').read()
     b64img = str(base64.b64encode(imgfile), 'utf-8')
-    return {content: b64img}
+    return {'content': b64img}
 
 @app.route('/file/preview', methods=['GET'])
 def preview_file():
